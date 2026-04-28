@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leta — Get anything, delivered in Kenya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f2419;
+    --paper: #f5efe4;
+    --paper-deep: #ede4d3;
+    --accent: #d65a1a;
+    --muted: #6b6357;
+    --line: #d4cab8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  nav { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Instrument Serif', serif; font-size: 32px; font-style: italic; letter-spacing: -0.02em; }
+  .logo-dot { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a { color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 10px 18px; border-radius: 100px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--accent); }
+  .hero { padding: 100px 0 80px; position: relative; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--paper-deep); border: 1px solid var(--line); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 32px; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(48px, 8vw, 96px); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 28px; max-width: 900px; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 19px; color: var(--muted); max-width: 540px; margin-bottom: 40px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--ink); color: var(--paper); border: none; padding: 16px 28px; border-radius: 100px; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-secondary { color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+  .stats { display: flex; gap: 80px; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .stat-num { font-family: 'Instrument Serif', serif; font-size: 48px; line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .section { padding: 100px 0; border-top: 1px solid var(--line); }
+  .section-label { font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-bottom: 16px; }
+  .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 60px; max-width: 700px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step { background: var(--paper-deep); border: 1px solid var(--line); border-radius: 20px; padding: 32px; transition: transform 0.3s; }
+  .step:hover { transform: translateY(-4px); }
+  .step-num { font-family: 'Instrument Serif', serif; font-size: 64px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 20px; }
+  .step h3 { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+  .step p { color: var(--muted); font-size: 15px; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .why-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .why-item:last-child { border-bottom: none; }
+  .why-item h3 { font-family: 'Instrument Serif', serif; font-size: 28px; margin-bottom: 8px; }
+  .why-item p { color: var(--muted); font-size: 15px; }
+  .signup { background: var(--ink); color: var(--paper); border-radius: 24px; padding: 72px 56px; margin: 100px 0; position: relative; overflow: hidden; }
+  .signup::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(214,90,26,0.3) 0%, transparent 70%); pointer-events: none; }
+  .signup-inner { position: relative; max-width: 600px; }
+  .signup h2 { font-family: 'Instrument Serif', serif; font-size: 48px; line-height: 1.05; margin-bottom: 16px; }
+  .signup p { opacity: 0.7; font-size: 17px; margin-bottom: 32px; }
+  .signup-form { display: flex; gap: 12px; flex-wrap: wrap; }
+  .signup-form input { flex: 1; min-width: 240px; background: rgba(245, 239, 228, 0.1); border: 1px solid rgba(245, 239, 228, 0.2); color: var(--paper); padding: 16px 20px; border-radius: 100px; font-family: inherit; font-size: 15px; }
+  .signup-form input::placeholder { color: rgba(245, 239, 228, 0.5); }
+  .signup-form input:focus { outline: none; border-color: var(--accent); }
+  .signup-form button { background: var(--accent); color: var(--paper); border: none; padding: 16px 28px; border-radius: 100px; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .signup-form button:hover { background: #b04612; }
+  .signup-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .form-message { margin-top: 16px; font-size: 14px; color: var(--accent); min-height: 20px; }
+  footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 14px; }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  @media (max-width: 768px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 0; }
+    .stats { gap: 32px; }
+    .signup { padding: 48px 28px; }
+    .signup h2 { font-size: 36px; }
+  }
+  .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">leta<span class="logo-dot">.</span></div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why Leta</a>
+      <a href="order.html" class="nav-cta">Order now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag fade-up">Coming soon to Kenya</div>
+    <h1 class="fade-up delay-1">Get anything from <em>anywhere</em>, delivered in Kenya.</h1>
+    <p class="hero-sub fade-up delay-2">Paste a link from Amazon, Noon, Shein, or any online store. We handle the order, customs, and last-mile delivery to your door. Pay with M-Pesa.</p>
+    <div class="hero-actions fade-up delay-3">
+<a href="order.html" class="btn-primary" style="text-decoration: none; display: inline-block;">Order now</a>
+      <a href="#how" class="btn-secondary">See how it works</a>
+    </div>
+    <div class="stats fade-up delay-4">
+      <div>
+        <div class="stat-num">7-14</div>
+        <div class="stat-label">Days to your door</div>
+      </div>
+      <div>
+        <div class="stat-num">M-Pesa</div>
+        <div class="stat-label">Pay in shillings</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Stores supported</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Three steps. No headaches.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Paste the link</h3>
+        <p>Find what you want on any online store. Drop the link into Leta and we show you the full price in shillings, including shipping and duty.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Pay on M-Pesa</h3>
+        <p>Confirm the order and pay with M-Pesa. We place the order on your behalf and track it from the source to our hub.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>We deliver</h3>
+        <p>Your item lands in Nairobi, clears customs, and we bring it to your address. Track everything in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-label">Why Leta</div>
+    <h2 class="section-title">Built for the way Kenyans actually shop online.</h2>
+    <div class="why-grid">
+      <div>
+        <div class="why-item">
+          <h3>One price, no surprises</h3>
+          <p>The price you see covers product, shipping, and duty. No hidden fees when your item arrives.</p>
+        </div>
+        <div class="why-item">
+          <h3>Real M-Pesa support</h3>
+          <p>Pay how you actually pay. No foreign cards, no exchange rate confusion.</p>
+        </div>
+        <div class="why-item">
+          <h3>Track every step</h3>
+          <p>From the warehouse abroad to your gate in Kenya. Know where your order is at all times.</p>
+        </div>
+      </div>
+      <div>
+        <div class="why-item">
+          <h3>Any store, one platform</h3>
+          <p>Amazon, Noon, AliExpress, Shein, eBay. If it has a link, we can get it.</p>
+        </div>
+        <div class="why-item">
+          <h3>Local support</h3>
+          <p>Talk to a real person in Nairobi if anything goes wrong. WhatsApp, call, or visit.</p>
+        </div>
+        <div class="why-item">
+          <h3>Honest pricing</h3>
+          <p>A flat service fee. We make money on volume, not by hiding charges in your invoice.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="signup">
+  <div class="signup">
+    <div class="signup-inner">
+      <h2>Be first in line.</h2>
+      <p>We're launching in Nairobi soon. Join the waitlist and we'll send you a code for free delivery on your first order.</p>
+      <div class="signup-form">
+        <input type="email" id="emailInput" placeholder="your@email.com">
+        <button id="signupBtn" onclick="handleSignup()">Join waitlist</button>
+      </div>
+      <div class="form-message" id="formMessage"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Leta. Built in Nairobi.</div>
+    <div>hello@leta.co.ke</div>
+  </div>
+</footer>
+
+<!-- Supabase library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // ============================================
+  // SUPABASE CONFIG — paste your keys below
+  // ============================================
+  const SUPABASE_URL = 'https://ufqepwgcwndmaxyllkzr.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmcWVwd2djd25kbWF4eWxsa3pyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczODA3NzMsImV4cCI6MjA5Mjk1Njc3M30.EF_gMzvK4PZz3koa9MKBUcFbACh5c9K1yLnI_hhZZIE';
+  // ============================================
+
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  async function handleSignup() {
+    const input = document.getElementById('emailInput');
+    const message = document.getElementById('formMessage');
+    const button = document.getElementById('signupBtn');
+    const email = input.value.trim().toLowerCase();
+
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      message.textContent = 'Please enter a valid email.';
+      message.style.color = '#ff8a65';
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = 'Saving...';
+    message.textContent = '';
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('waitlist')
+        .insert([{ email: email, source: 'landing_page' }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          message.textContent = "You're already on the list. Thanks!";
+        } else {
+          message.textContent = 'Something went wrong. Try again.';
+          console.error(error);
+        }
+        message.style.color = '#ff8a65';
+      } else {
+        message.textContent = "You're on the list. We'll be in touch.";
+        message.style.color = '#d65a1a';
+        input.value = '';
+      }
+    } catch (err) {
+      message.textContent = 'Connection error. Check your internet.';
+      message.style.color = '#ff8a65';
+      console.error(err);
+    }
+
+    button.disabled = false;
+    button.textContent = 'Join waitlist';
+  }
+
+  document.getElementById('emailInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') handleSignup();
+  });
+</script>
+
+</body>
+</html>
